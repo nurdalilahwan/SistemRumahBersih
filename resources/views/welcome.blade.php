@@ -82,7 +82,7 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-        <div class="position-header"><h2>{{ __('iGuaman Portal') }}</h2></div>
+        <div class="position-header"><h2>{{ __('Sistem Rumah Bersih') }}</h2></div>
             <div class="top-right links">
                 @auth
                     <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
