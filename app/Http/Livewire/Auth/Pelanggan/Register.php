@@ -8,6 +8,10 @@ class Register extends Component
 {
     public $userCreate;
 
+    protected $listeners = [
+        'alert',
+    ];
+
     public function render()
     {
         return view('livewire.auth.pelanggan.register');

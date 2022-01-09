@@ -1,0 +1,1 @@
+<span class="badge bg-{{ random_color() }}">{{ $label ?? '' }}</span>

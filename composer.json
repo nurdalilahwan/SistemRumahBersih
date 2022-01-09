@@ -27,7 +27,12 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/helpers/AdminLTE.php",
+            "app/helpers/datetime.php",
+            "app/helpers/job.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
