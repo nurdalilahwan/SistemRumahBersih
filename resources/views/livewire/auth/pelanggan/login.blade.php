@@ -6,25 +6,21 @@
           <span class="h1">Login Pelanggan</span>
         </div>
         <div class="card-body">
-          @if (session()->has('message-danger'))
-              <div class="alert alert-danger alert-dismissible">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-              {{ session('message-danger') }}
-              </div>
-          @endif
-
-
-
+            @if (session()->has('message-danger'))
+                <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                {{ session('message-danger') }}
+                </div>
+            @endif
             <form wire:submit.prevent="login">
-
                 <div class="input-group mb-3">
-                  <input wire:model.defer="username" id="username" type="text" class="form-control @error('username') is-invalid @enderror" placeholder="IC / Passport / Sijil Lahir" data-inputmask='"mask": "999999-99-9999"' data-mask>
+                  <input wire:model.defer="name" id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nama Pengguna">
                   <div class="input-group-append">
                     <div class="input-group-text">
                       <span class="fas fa-envelope"></span>
                     </div>
                   </div>
-                  @error('username')
+                  @error('name')
                       <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                       </span>

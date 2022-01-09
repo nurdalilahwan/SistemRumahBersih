@@ -39,9 +39,9 @@ if (! function_exists('avatar')) {
     function avatar()
     {
         $avatar = asset('img/user.png');
-        if(!empty(auth()->user()->getMedia('avatar')->first())){
-            $avatar = auth()->user()->getMedia('avatar')->first()->getFullUrl();
-        }
+        // if(!empty(auth()->user()->getMedia('avatar')->first())){
+        //     $avatar = auth()->user()->getMedia('avatar')->first()->getFullUrl();
+        // }
 
         return $avatar;
     }

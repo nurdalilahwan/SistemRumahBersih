@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class Login extends Component
 {
-    public $username;
+    public $name;
     public $password;
     public $remember;
 
@@ -20,11 +20,11 @@ class Login extends Component
     public function login()
     {
         $this->validate([
-            'username' => 'required|string',
+            'name' => 'required|string',
             'password' => 'required|string',
         ]);
 
-        $credential = ['username' => $this->username, 'password' => $this->password, 'profile_type' => 'App\Models\UserAwam'];
+        $credential = ['name' => $this->name, 'password' => $this->password];
 
         if(Auth::attempt($credential)){
             return redirect()->route('home');
