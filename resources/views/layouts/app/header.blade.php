@@ -100,12 +100,9 @@ $('.sidebar-toggle').on('click', function(e) {
             <i class="fas fa-caret-down"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" style="max-width: 180px" aria-labelledby="navbarDropdown">
-                {{-- @permission('UserProfile')         --}}
                 <a class="dropdown-item" href="{{ route('profile') }}"><i class="fa fa-user"></i> Profile</a>
-                {{-- @endpermission --}}
-                @permission('UserSettings')
-                @endpermission
-                <a class="dropdown-item" href="{{ route('reset-password') }}"><i class="fas fa-key"></i> Change Password</a>
+                <a class="dropdown-item"><i class="fa fa-user"></i>{{ Auth::user()->user_type }} </a>
+                {{-- <a class="dropdown-item" href="{{ route('reset-password') }}"><i class="fas fa-key"></i> Change Password</a> --}}
                 <div class="dropdown-divider"></div>
 
 
