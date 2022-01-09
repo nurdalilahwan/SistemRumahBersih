@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('nama_penuh');
             $table->string('no_telefon');
             $table->string('alamat');
+            $table->string('user_type');
             $table->rememberToken();
             $table->timestamps();
         });
