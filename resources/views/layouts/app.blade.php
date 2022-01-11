@@ -24,7 +24,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            {{-- {{ $slot }} --}}
+            {{ $slot }}
         </div>
         <!-- /.content-wrapper -->
 
