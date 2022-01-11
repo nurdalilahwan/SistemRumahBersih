@@ -12,6 +12,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.4",
         "livewire/livewire": "^2.8"
     },
     "require-dev": {
@@ -27,7 +28,12 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/helpers/AdminLTE.php",
+            "app/helpers/datetime.php",
+            "app/helpers/job.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

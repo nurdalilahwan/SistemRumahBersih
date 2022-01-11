@@ -89,7 +89,7 @@
                 @else
                     <a href="{{ route('pelanggan.login') }}" class="text-sm text-gray-700 underline">Pelanggan</a>
 
-                    <a href="{{ route('pelanggan.login') }}" class="ml-4 text-sm text-gray-700 underline">Tukang Bersih</a>
+                    <a href="{{ route('tukang-bersih.login') }}" class="ml-4 text-sm text-gray-700 underline">Tukang Bersih</a>
                 @endauth
             </div>
         </div>

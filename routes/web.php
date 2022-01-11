@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\HomeComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,31 @@ Route::prefix('tukang-bersih')
     Route::view('/login', 'auth.tukang-bersih.login')->name('login');
     Route::view('/register', 'auth.tukang-bersih.register')->name('register');
 });
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/home', HomeComponent::class)->name('home');
+
+    Route::get('/reset-password', HomeComponent::class)->name('reset-password');
+    Route::get('/profile', HomeComponent::class)->name('profile');
+
+    Route::get('setLocale/{locale}', function ($locale) {
+        app()->setLocale($locale);
+        session()->put('locale', $locale);
+        return redirect()->back();
+    })->name('locale');
+
+    Route::post('sidebarToggle', function () {
+        //if no session then save as collapsed
+        if (session()->has('sidebarState')) {
+            session()->forget('sidebarState');;
+        } else {
+            //colapse sidebar
+            session()->put('sidebarState', 'sidebar-collapse');
+        }
+    })->name('sidebarToggle');
+
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

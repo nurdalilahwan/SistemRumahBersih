@@ -17,7 +17,7 @@
   @livewireStyles
 
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-image: url('../img/13250.png'); background-repeat: no-repeat; background-size: 100% 100%;">
   <livewire:auth.pelanggan.login />
 
 

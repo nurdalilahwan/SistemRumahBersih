@@ -1,0 +1,1 @@
+<x-datatables.head title="{{ __('Tindakan') }}" align="center" width="{{ $attributes->get('width') }}"/>

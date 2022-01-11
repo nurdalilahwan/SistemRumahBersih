@@ -3,10 +3,18 @@
 namespace App\Http\Livewire\Auth\Pelanggan;
 
 use Livewire\Component;
+use App\Models\Pelanggan;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Register extends Component
 {
-    public $userCreate;
+    public $daftarPelanggan;
+
+    protected $listeners = [
+        'alert',
+    ];
 
     public function render()
     {
@@ -18,23 +26,31 @@ class Register extends Component
 
         $this->validate(
             [
-                'userCreate.name' => ['required', 'string', 'max:255'],
-                'userCreate.email' => ['required', 'string', 'email', 'max:255'],
-                'userCreate.password' => ['required', 'string', 'min:8', 'confirmed'],
+                'daftarPelanggan.nama_penuh' => ['required'],
+                'daftarPelanggan.name' => ['required'],
+                'daftarPelanggan.email' => ['required', 'string', 'email'],
+                'daftarPelanggan.no_pengenalan' => ['required'],
+                'daftarPelanggan.password' => ['required', 'string', 'min:8'],
+                'daftarPelanggan.no_telefon' => ['required'],
             ],
             [],
             [
-                'userCreate.name' => 'Name',
-                'userCreate.email' => 'Email Address',
-                'userCreate.password' => 'Password',
+                'daftarPelanggan.nama_penuh' => 'Nama Penuh',
+                'daftarPelanggan.name' => 'Nama Pengguna',
+                'daftarPelanggan.email' => 'Email',
+                'daftarPelanggan.no_pengenalan' => 'No. Kad Pengenalan',
+                'daftarPelanggan.password' => 'Kata Laluan',
+                'daftarPelanggan.no_telefon' => 'No. Telefon'
             ]
         );
 
         try {
             DB::beginTransaction();
 
-            event(new Registered($user = $this->create()));
-
+            $this->daftarPelanggan['password'] = bcrypt($this->daftarPelanggan['password']);
+            $this->daftarPelanggan['user_type'] = "Pelanggan";
+            $pelanggan = Pelanggan::create($this->daftarPelanggan);
+            $user = User::create($this->daftarPelanggan);
             $this->guard()->login($user);
 
             DB::commit();
@@ -42,6 +58,7 @@ class Register extends Component
 
         } catch (\Throwable $th) {
             DB::rollback();
+            dd($th);
             $this->reportError($th->getMessage());
         }
     }
@@ -54,19 +71,5 @@ class Register extends Component
     protected function guard()
     {
         return Auth::guard();
-    }
-
-    protected function create()
-    {
-        $this->userCreate['username'] = $this->userCreate['profile']['no_pengenalan'];
-        $this->userCreate['password'] = bcrypt($this->userCreate['username']);
-
-        $profile = UserAwam::create($this->userCreate['profile']);
-        $profile->user()->create($this->userCreate);
-        $user = $profile->user;
-
-        $role = Role::where('name', RolesEnum::Pelanggan)->first();
-        $user->attachRole($role->id);
-        return $profile->user;
     }
 }
