@@ -6,7 +6,7 @@
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>AdminLTE 3 | Starter</title>
+  <title>Sistem Rumah Bersih</title>
 
   <!-- Styles -->
   @include('layouts.app.css')

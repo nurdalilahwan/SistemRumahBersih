@@ -24,7 +24,7 @@ class Login extends Component
             'password' => 'required|string',
         ]);
 
-        $credential = ['name' => $this->name, 'password' => $this->password];
+        $credential = ['name' => $this->name, 'password' => $this->password, 'user_type' => 'Pelanggan'];
 
         if(Auth::attempt($credential)){
             return redirect()->route('home');
