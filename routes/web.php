@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\Perkhidmatan\Index as Perkhidmatan;
-use App\Http\Livewire\Tempahan\Index as Tempahan;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +56,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('sidebarToggle');
 
     Route::get('/perkhidmatan', Perkhidmatan::class)->name('perkhidmatan');
-    Route::get('/tempahan', Tempahan::class)->name('tempahan');
 
 });
 

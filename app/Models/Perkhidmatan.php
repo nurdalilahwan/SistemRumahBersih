@@ -13,6 +13,7 @@ class Perkhidmatan extends Model
         'id_tukang_bersih',
         'tajuk',
         'penerangan',
-        'ketersediaan_lokasi'
+        'ketersediaan_lokasi',
+        'status'
     ];
 }

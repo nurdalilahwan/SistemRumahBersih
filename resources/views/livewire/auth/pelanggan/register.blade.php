@@ -40,32 +40,21 @@
                             </div>
                         </x-slot>
                         <x-slot name="footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" >Tutup</button>
                             <button id="form_hantar" type="submit" class="btn btn-primary" form="register-form">Daftar</button>
                         </x-slot>
                     </x-card>
                 </form>
             </x-slot>
             <x-slot name="footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" >Tutup</button>
                 <button id="form_hantar" type="submit" class="btn btn-primary" form="register-form">Daftar</button>
             </x-slot>
         </x-card>
-    </x-content>
-    <div wire:loading.delay wire:target="register">
-        <div class="loading">
-            <div class="la-pacman la-3x">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-    </div>
-</div>
 
+    </x-content>
+    <x-loading-indicator wire:target="store"/>
+</div>
 @push('js')
     <script>
     </script>

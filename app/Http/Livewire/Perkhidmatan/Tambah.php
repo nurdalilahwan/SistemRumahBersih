@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Perkhidmatan;
 
-use Livewire\Component;
 use App\Models\Perkhidmatan;
 use Illuminate\Support\Facades\DB;
+use Livewire\Component;
 
 class Tambah extends Component
 {
@@ -15,9 +15,8 @@ class Tambah extends Component
     //     return view('livewire.perkhidmatan.tambah');
     // }
 
-    public function store()
+    public function tambah()
     {
-
         $this->validate(
             [
                 'tambahPerkhidmatan.tajuk' => ['required'],
@@ -36,6 +35,7 @@ class Tambah extends Component
             $this->emit('triggerSwalSuccess', 'Berjaya!');
             DB::beginTransaction();
             $this->tambahPerkhidmatan['id_tukang_bersih'] = auth()->user()->id;
+            $this->tambahPerkhidmatan['status'] = "Belum Ditempah";
             $perkhidmatan = Perkhidmatan::create($this->tambahPerkhidmatan);
             $this->emit('closeModal');
 

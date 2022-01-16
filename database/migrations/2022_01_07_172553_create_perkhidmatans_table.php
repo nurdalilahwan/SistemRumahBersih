@@ -16,10 +16,10 @@ class CreatePerkhidmatansTable extends Migration
         Schema::create('perkhidmatans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_tukang_bersih')->references('id')->on('users');
-            $table->foreignId('id_tempahan')->nullable()->references('id')->on('users');
             $table->string('tajuk');
             $table->string('penerangan');
             $table->string('ketersediaan_lokasi');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
