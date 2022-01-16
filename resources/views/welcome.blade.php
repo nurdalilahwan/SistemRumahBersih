@@ -94,7 +94,7 @@
             </div>
         </div>
         <div class="content">
-            <img src="/img/13250.png" style="width: 100%; height: 575px">
+            <img src="/img/Selamat Datang1.png" style="width: 100%; height: 1080px">
         </div>
 
         <!-- jQuery -->

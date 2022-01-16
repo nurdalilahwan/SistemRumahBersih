@@ -1,10 +1,7 @@
 <div>
-    <x-content title="Pendaftaran">
+    <x-content title="">
 
         <x-forms.alert-validation />
-
-        <x-card title="Daftar Akaun Pelanggan" style="width: 90%; margin: 0 auto; float: none; margin-bottom: 10px;">
-            <x-slot name="body">
                 <form id="register-form"  wire:submit.prevent="register">
 
                     <x-card title="Maklumat Pendaftaran" style="width: 90%; margin: 0 auto; float: none; margin-bottom: 10px;">
@@ -45,12 +42,7 @@
                         </x-slot>
                     </x-card>
                 </form>
-            </x-slot>
-            <x-slot name="footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" >Tutup</button>
-                <button id="form_hantar" type="submit" class="btn btn-primary" form="register-form">Daftar</button>
-            </x-slot>
-        </x-card>
+           
 
     </x-content>
     <x-loading-indicator wire:target="store"/>
