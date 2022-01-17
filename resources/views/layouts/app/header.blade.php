@@ -46,7 +46,8 @@ $('.sidebar-toggle').on('click', function(e) {
     <!-- Language -->
     <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#" data-toggle="tooltip" data-placement="bottom" title="{{ __('Language') }}" aria-expanded="false">
-        <i class="{{ get_locale() }}"></i>
+        {{-- <i class="{{ get_locale() }}"></i> --}}
+        <i class="flag-icon flag-icon-my mr-2"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right p-0">
         <a href="{{ route('locale','en') }}" class="dropdown-item">
@@ -55,34 +56,6 @@ $('.sidebar-toggle').on('click', function(e) {
         <a href="{{ route('locale','ms') }}" class="dropdown-item">
             <i class="flag-icon flag-icon-my mr-2"></i> Bahasa Melayu
         </a>
-        </div>
-    </li>
-
-    <!-- Notifications Dropdown Menu -->
-    <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-        <i class="far fa-bell"></i>
-        <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <span class="dropdown-header">15 Notifications</span>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
     </li>
 

@@ -49,6 +49,8 @@
             allowOutsideClick: false,
             allowEscapeKey: false,
             allowEnterKey: false,
+        }).then(function(){
+            location.reload();
         });
     });
 
