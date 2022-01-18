@@ -52,8 +52,8 @@ class Persetujuan extends Component
 
     }
 
-    // public function render()
-    // {
-    //     return view('livewire.perkhidmatan.persetujuan');
-    // }
+    public function render()
+    {
+        return view('livewire.perkhidmatan.persetujuan');
+    }
 }

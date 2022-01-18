@@ -1,5 +1,6 @@
 <x-assets.swal />
 <x-assets.date-time-year-picker />
+<x-assets.select2 />
 
 <div>
     <x-content title="{{ __('Perkhidmatan') }}">
@@ -37,8 +38,6 @@
                                         <a class="btn btn-xs btn-default" wire:click="$emit('buatTempahan', {{ $perkhidmatan->id }})" href="#" data-toggle="modal" data-target="#modal-buat-tempahan"><i class="fas fa-plus fa-sm"></i>{{ __(' Tempah') }}</a>
 
                                     @endif
-
-
 
                                 @elseif (auth()->user()->user_type == "Tukang Bersih")
                                     @if (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->status == "Menunggu Persetujuan Tukang Bersih")

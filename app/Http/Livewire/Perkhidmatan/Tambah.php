@@ -3,17 +3,19 @@
 namespace App\Http\Livewire\Perkhidmatan;
 
 use App\Models\Perkhidmatan;
+use App\Models\Lokasi;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-
 class Tambah extends Component
 {
     public $tambahPerkhidmatan;
+    public $senaraiLokasi;
 
-    // public function render()
-    // {
-    //     return view('livewire.perkhidmatan.tambah');
-    // }
+    public function render()
+    {
+        $this->senaraiLokasi = Lokasi::all();
+        return view('livewire.perkhidmatan.tambah');
+    }
 
     public function tambah()
     {

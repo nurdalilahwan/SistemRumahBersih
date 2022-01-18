@@ -55,8 +55,8 @@ class Tempah extends Component
         }
     }
 
-    // public function render()
-    // {
-    //     return view('livewire.perkhidmatan.tempah');
-    // }
+    public function render()
+    {
+        return view('livewire.perkhidmatan.tempah');
+    }
 }

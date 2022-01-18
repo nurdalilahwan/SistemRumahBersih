@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Perkhidmatan;
 
+use App\Models\Lokasi;
 use App\Models\Perkhidmatan;
 use Livewire\Component;
 
