@@ -13,10 +13,10 @@ class Tempah extends Component
     public $tempahPerkhidmatan;
 
     protected $listeners = [
-        'paparPerkhidmatan'
+        'buatTempahan'
     ];
 
-    public function paparPerkhidmatan($idPerkhidmatan)
+    public function buatTempahan($idPerkhidmatan)
     {
         $this->paparanPerkhidmatan = Perkhidmatan::find($idPerkhidmatan);
     }
@@ -35,11 +35,15 @@ class Tempah extends Component
 
         try {
             DB::beginTransaction();
+
             $this->tempahPerkhidmatan['id_pelanggan'] = auth()->user()->id;
             $this->tempahPerkhidmatan['id_perkhidmatan'] = $this->paparanPerkhidmatan->id;
+            $this->tempahPerkhidmatan['status'] = "Menunggu Persetujuan Tukang Bersih";
             $tempahan = Tempahan::create($this->tempahPerkhidmatan);
-            $this->paparanPerkhidmatan->update(['status'=>"Telah Ditempah"]);
-            $this->emit('triggerSwalSuccess', 'Berjaya!');
+
+            $this->paparanPerkhidmatan->update(['status'=>"Telah Di Tempah"]);
+
+            $this->emit('triggerSwalSuccess', 'Perkhidmatan Berjaya Di Tempah');
             $this->emit('closeModalTempah');
 
             DB::commit();
@@ -53,6 +57,6 @@ class Tempah extends Component
 
     // public function render()
     // {
-    //     return view('livewire.perkhidmatan.tempahan');
+    //     return view('livewire.perkhidmatan.tempah');
     // }
 }

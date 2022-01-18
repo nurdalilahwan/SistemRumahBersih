@@ -16,4 +16,15 @@ class Perkhidmatan extends Model
         'ketersediaan_lokasi',
         'status'
     ];
+
+    public function tempahan()
+    {
+        return $this->hasOne(Tempahan::class,'id');
+    }
+
+    public function tukangBersih()
+    {
+        return $this->belongsTo(User::class,'id_tukang_bersih');
+    }
+
 }

@@ -15,9 +15,10 @@ class CreateTempahansTable extends Migration
     {
         Schema::create('tempahans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_pelanggan')->nullable()->references('id')->on('users');
-            $table->foreignId('id_perkhidmatan')->nullable()->references('id')->on('perkhidmatans');
+            $table->foreignId('id_pelanggan')->references('id')->on('users');
+            $table->foreignId('id_perkhidmatan')->references('id')->on('perkhidmatans');
             $table->date('tarikh');
+            $table->string('status');
             $table->timestamps();
         });
     }

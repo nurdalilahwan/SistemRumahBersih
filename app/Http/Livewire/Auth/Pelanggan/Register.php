@@ -49,7 +49,7 @@ class Register extends Component
 
             $this->daftarPelanggan['password'] = bcrypt($this->daftarPelanggan['password']);
             $this->daftarPelanggan['user_type'] = "Pelanggan";
-            $pelanggan = Pelanggan::create($this->daftarPelanggan);
+            // $pelanggan = Pelanggan::create($this->daftarPelanggan);
             $user = User::create($this->daftarPelanggan);
             $this->guard()->login($user);
 

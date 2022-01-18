@@ -13,17 +13,17 @@ class CreatePelanggansTable extends Migration
      */
     public function up()
     {
-        Schema::create('pelanggans', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('nama_penuh');
-            $table->string('email');
-            $table->string('no_telefon');
-            $table->string('alamat');
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        // Schema::create('pelanggans', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name');
+        //     $table->string('nama_penuh');
+        //     $table->string('email');
+        //     $table->string('no_telefon');
+        //     $table->string('alamat');
+        //     $table->string('password');
+        //     $table->rememberToken();
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -33,6 +33,6 @@ class CreatePelanggansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pelanggans');
+        // Schema::dropIfExists('pelanggans');
     }
 }

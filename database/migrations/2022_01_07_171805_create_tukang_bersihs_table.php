@@ -13,17 +13,17 @@ class CreateTukangBersihsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tukang_bersihs', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('nama_penuh');
-            $table->string('email');
-            $table->string('no_telefon');
-            $table->string('alamat');
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        // Schema::create('tukang_bersihs', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name');
+        //     $table->string('nama_penuh');
+        //     $table->string('email');
+        //     $table->string('no_telefon');
+        //     $table->string('alamat');
+        //     $table->string('password');
+        //     $table->rememberToken();
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -33,6 +33,6 @@ class CreateTukangBersihsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tukang_bersihs');
+        // Schema::dropIfExists('tukang_bersihs');
     }
 }

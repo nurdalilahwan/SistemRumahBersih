@@ -17,4 +17,9 @@ class TukangBersih extends Model
         'alamat',
         'password',
     ];
+
+    public function perkhidmatan()
+    {
+        return $this->hasMany(Perkhidmatan::class,'id');
+    }
 }

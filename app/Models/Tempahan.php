@@ -13,8 +13,20 @@ class Tempahan extends Model
     protected $fillable =[
         'id_pelanggan',
         'id_perkhidmatan',
-        'tarikh'
+        'tarikh',
+        'status'
+
     ];
+
+    public function perkhidmatan()
+    {
+        return $this->belongsTo(Perkhidmatan::class,'id_perkhidmatan');
+    }
+
+    public function pelanggan()
+    {
+        return $this->belongsTo(User::class,'id_pelanggan');
+    }
 
     public function getTarikhAttribute($value)
     {

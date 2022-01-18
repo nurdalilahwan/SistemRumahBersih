@@ -28,13 +28,31 @@
                             <td style="text-align: center">{{ ++$key }}</td>
                             <td style="text-align: center">{{ $perkhidmatan->tajuk }}</td>
                             <td style="text-align: center">{{ $perkhidmatan->ketersediaan_lokasi }}</td>
-                            <td style="text-align: center">{{ $perkhidmatan->status }}</td>
+                            <td style="text-align: center">{{ $perkhidmatan->tempahan->status ?? $perkhidmatan->status }}</td>
                             <x-datatables.body-action>
                                 @if (auth()->user()->user_type == "Pelanggan")
-                                    @if ($perkhidmatan->status == "Telah Ditempah")
+                                    @if ($perkhidmatan->status == "Telah Di Tempah")
 
-                                    @elseif ($perkhidmatan->status == "Belum Ditempah")
-                                        <a class="btn btn-xs btn-default" wire:click="$emit('paparPerkhidmatan', {{ $perkhidmatan->id }})" href="#" data-toggle="modal" data-target="#modal-tempahan-perkhidmatan"><i class="fas fa-plus fa-sm"></i>{{ __(' Tempah') }}</a>
+                                    @elseif (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->status == "Tempahan Di Terima")
+
+                                    @elseif (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->id_pelanggan == auth()->user()->id && $perkhidmatan->tempahan->status == "Tempahan Di Tolak")
+                                        <a class="btn btn-xs btn-default" wire:click="$emit('buatTempahan', {{ $perkhidmatan->id }})" href="#" data-toggle="modal" data-target="#modal-buat-tempahan"><i class="fas fa-plus fa-sm"></i>{{ __(' Tempah Semula') }}</a>
+
+                                    @elseif ($perkhidmatan->status == "Belum Di Tempah")
+                                        <a class="btn btn-xs btn-default" wire:click="$emit('buatTempahan', {{ $perkhidmatan->id }})" href="#" data-toggle="modal" data-target="#modal-buat-tempahan"><i class="fas fa-plus fa-sm"></i>{{ __(' Tempah') }}</a>
+
+                                    @endif
+
+
+
+                                @elseif (auth()->user()->user_type == "Tukang Bersih")
+                                    @if (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->status == "Menunggu Persetujuan Tukang Bersih")
+                                        <a class="btn btn-xs btn-default" wire:click="$emit('persetujuan', {{ $perkhidmatan->id }})" href="#" data-toggle="modal" data-target="#modal-persetujuan"><i class="fas fa-plus fa-sm"></i>{{ __(' Pengesahan') }}</a>
+
+                                    @elseif (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->status == "Tempahan Di Tolak")
+
+                                    @elseif (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->status == "Tempahan Di Terima")
+
                                     @endif
                                 @endif
                             </x-datatables.body-action>
@@ -55,10 +73,16 @@
             <x-slot name="footer">
             </x-slot>
         </x-modal>
-        <x-modal id="modal-tempahan-perkhidmatan" title="{{ __('Tempahan Perkhidmatan') }}" size="xl" icon="fas fa-hand-sparkles" >
+        <x-modal id="modal-buat-tempahan" title="{{ __('Tempahan Perkhidmatan') }}" size="xl" icon="fas fa-hand-sparkles" >
             <x-slot name="body">
-                {{-- @include('livewire.perkhidmatan.tempah') --}}
                 <livewire:perkhidmatan.tempah />
+            </x-slot>
+            <x-slot name="footer">
+            </x-slot>
+        </x-modal>
+        <x-modal id="modal-persetujuan" title="{{ __('Persetujuan Perkhidmatan') }}" size="xl" icon="fas fa-hand-sparkles" >
+            <x-slot name="body">
+                <livewire:perkhidmatan.persetujuan />
             </x-slot>
             <x-slot name="footer">
             </x-slot>
@@ -73,7 +97,7 @@
         })
 
         Livewire.on('closeModalTempah', () => {
-            $('#modal-tempahan-perkhidmatan').modal('hide');
+            $('#modal-buat-tempahan').modal('hide');
         })
     </script>
 @endpush

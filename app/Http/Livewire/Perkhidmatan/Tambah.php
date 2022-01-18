@@ -32,11 +32,13 @@ class Tambah extends Component
         );
 
         try {
-            $this->emit('triggerSwalSuccess', 'Berjaya!');
             DB::beginTransaction();
+
             $this->tambahPerkhidmatan['id_tukang_bersih'] = auth()->user()->id;
-            $this->tambahPerkhidmatan['status'] = "Belum Ditempah";
+            $this->tambahPerkhidmatan['status'] = "Belum Di Tempah";
             $perkhidmatan = Perkhidmatan::create($this->tambahPerkhidmatan);
+
+            $this->emit('triggerSwalSuccess', 'Perkhidmatan Berjaya Di Tambah');
             $this->emit('closeModal');
 
             DB::commit();
@@ -46,6 +48,22 @@ class Tambah extends Component
             dd($th);
             $this->reportError($th->getMessage());
         }
+    }
+
+    public function setuju(){
+        try{
+            DB::beginTransaction();
+
+            $perkhidmatan['status'] = "Belum Di Tempah";
+
+            DB::commit();
+
+        } catch (\Throwable $th) {
+            DB::rollback();
+            dd($th);
+            $this->reportError($th->getMessage());
+        }
+
     }
 
 }
