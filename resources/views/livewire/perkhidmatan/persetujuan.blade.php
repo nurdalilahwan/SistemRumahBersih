@@ -28,7 +28,7 @@
         <button type="button" class="btn btn-default" data-dismiss="modal" >Tutup</button>
         @if (isset($this->perkhidmatan->tempahan))
             <a class="btn btn btn-warning" wire:click="$emit('tolakTempahan',  {{ $this->perkhidmatan->tempahan->id }})" href="#">{{ __('Tolak') }}</a>
-            <a class="btn btn btn-success" wire:click="$emit('terimaTempahan',  {{ $this->perkhidmatan->tempahan->id }})" href="#">{{ __('Terima') }}</a>
+        <a class="btn btn btn-success" wire:click="$emit('terimaTempahan',  {{ $this->perkhidmatan->tempahan->id }})" href="#">{{ __('Terima') }}</a>
         @endif
     </x-slot>
 </x-card>

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Perkhidmatan;
 
 use App\Models\Tempahan;
 use App\Models\Perkhidmatan;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Persetujuan extends Component
@@ -23,12 +24,23 @@ class Persetujuan extends Component
 
     public function tolakTempahan($idTempahan)
     {
-        $tempahan = Tempahan::find($idTempahan)->update(['status'=>"Tempahan Di Tolak"]);
-        $tempahan->perkhidmatan->update(['status'=>"Belum Di Tempah"]);
+        try {
+            DB::beginTransaction();
 
+            $tempahan = Tempahan::find($idTempahan);
+            Perkhidmatan::find($tempahan->id_perkhidmatan)->update(['status'=>"Belum Di Tempah"]);
+            $tempahan->update(['id_perkhidmatan'=>null,'status'=>"Tempahan Di Tolak"]);
 
-        $this->emit('triggerSwalSuccess', 'Tempahan Di Tolak');
-        $this->emit('closeModal');
+            DB::commit();
+
+            $this->emit('triggerSwalSuccess', 'Tempahan Di Tolak');
+            $this->emit('closeModal');
+
+        } catch (\Throwable $th) {
+            DB::rollback();
+            dd($th);
+            $this->reportError($th->getMessage());
+        }
 
     }
     public function terimaTempahan($idTempahan)

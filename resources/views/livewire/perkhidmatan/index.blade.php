@@ -25,18 +25,13 @@
                     <x-slot name="body">
                         @forelse ($perkhidmatans as $key=>$perkhidmatan)
                         <tr>
-                            <td style="text-align: center">{{ ++$key }}</td>
+                            <td style="text-align: center">{{ $key + 1 }}</td>
                             <td style="text-align: center">{{ $perkhidmatan->tajuk }}</td>
                             <td style="text-align: center">{{ $perkhidmatan->ketersediaan_lokasi }}</td>
-                            <td style="text-align: center">{{ $perkhidmatan->tempahan->status ?? $perkhidmatan->status }}</td>
+                            <td style="text-align: center">{{ isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->id_pelanggan == auth()->user()->id ? $perkhidmatan->tempahan->status : $perkhidmatan->status }}</td>
                             <x-datatables.body-action>
                                 @if (auth()->user()->user_type == "Pelanggan")
                                     @if ($perkhidmatan->status == "Telah Di Tempah")
-
-                                    @elseif (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->status == "Tempahan Di Terima")
-
-                                    @elseif (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->id_pelanggan == auth()->user()->id && $perkhidmatan->tempahan->status == "Tempahan Di Tolak")
-                                        <a class="btn btn-xs btn-default" wire:click="$emit('buatTempahan', {{ $perkhidmatan->id }})" href="#" data-toggle="modal" data-target="#modal-buat-tempahan"><i class="fas fa-plus fa-sm"></i>{{ __(' Tempah Semula') }}</a>
 
                                     @elseif ($perkhidmatan->status == "Belum Di Tempah")
                                         <a class="btn btn-xs btn-default" wire:click="$emit('buatTempahan', {{ $perkhidmatan->id }})" href="#" data-toggle="modal" data-target="#modal-buat-tempahan"><i class="fas fa-plus fa-sm"></i>{{ __(' Tempah') }}</a>
