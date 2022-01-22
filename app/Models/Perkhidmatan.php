@@ -19,7 +19,7 @@ class Perkhidmatan extends Model
 
     public function tempahan()
     {
-        return $this->hasOne(Tempahan::class,'id');
+        return $this->hasOne(Tempahan::class,'id_perkhidmatan');
     }
 
     public function tukangBersih()

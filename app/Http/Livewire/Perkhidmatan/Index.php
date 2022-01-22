@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Perkhidmatan;
 
 use App\Models\Lokasi;
+use Illuminate\Support\Facades\DB;
 use App\Models\Perkhidmatan;
 use Livewire\Component;
 
@@ -27,4 +28,21 @@ class Index extends Component
             return view('livewire.perkhidmatan.index', compact('perkhidmatans'));
         }
     }
+
+    public function destroy($id){
+        try {
+
+            DB::beginTransaction();
+            $perkhidmatan = Perkhidmatan::find($id);
+            $perkhidmatan->delete();
+            DB::commit();
+
+            // all good
+        } catch (\Throwable $th) {
+            DB::rollback();
+            // something went wrong
+            $this->reportError($th->getMessage());
+        }
+    }
+
 }

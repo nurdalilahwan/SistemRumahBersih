@@ -17,4 +17,9 @@ class Pelanggan extends Model
         'alamat',
         'password',
     ];
+
+    public function tempahan()
+    {
+        return $this->hasOne(Tempahan::class,'id_pelanggan');
+    }
 }

@@ -1,6 +1,7 @@
 <x-assets.swal />
 <x-assets.date-time-year-picker />
 <x-assets.select2 />
+<x-swal.delete />
 
 <div>
     <x-content title="{{ __('Perkhidmatan') }}">
@@ -31,23 +32,26 @@
                             <td style="text-align: center">{{ $perkhidmatan->ketersediaan_lokasi }}</td>
                             <td style="text-align: center">{{ isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->id_pelanggan == auth()->user()->id ? $perkhidmatan->tempahan->status : $perkhidmatan->status }}</td>
                             <x-datatables.body-action>
-                                @if (auth()->user()->user_type == "Pelanggan")
-                                    @if ($perkhidmatan->status == "Telah Di Tempah")
+                                @if ($perkhidmatan->status == "Telah Di Tempah")
 
-                                    @elseif ($perkhidmatan->status == "Belum Di Tempah")
+                                @elseif ($perkhidmatan->status == "Belum Di Tempah")
+                                    @if (auth()->user()->user_type == "Pelanggan")
                                         <a class="btn btn-xs btn-default" wire:click="$emit('buatTempahan', {{ $perkhidmatan->id }})" href="#" data-toggle="modal" data-target="#modal-buat-tempahan"><i class="fas fa-plus fa-sm"></i>{{ __(' Tempah') }}</a>
 
+                                    @elseif (auth()->user()->user_type == "Tukang Bersih")
+                                        <a class="btn btn-xs btn-default" wire:click="$emit('kemaskiniPerkhidmatan', {{ $perkhidmatan->id }})" href="#" data-toggle="modal" data-target="#modal-kemaskini-perkhidmatan"><i class="fas fa-edit fa-sm"></i>{{ __(' Kemaskini') }}</a>
+                                        <a class="btn btn-xs btn-danger" wire:click="$emit('triggerDelete', '{{ $perkhidmatan->id }}', '{{ $perkhidmatan->tajuk }}')"><i class="fas fa-trash"></i> {{ __(' Padam') }}</a>
                                     @endif
 
-                                @elseif (auth()->user()->user_type == "Tukang Bersih")
-                                    @if (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->status == "Menunggu Persetujuan Tukang Bersih")
-                                        <a class="btn btn-xs btn-default" wire:click="$emit('persetujuan', {{ $perkhidmatan->id }})" href="#" data-toggle="modal" data-target="#modal-persetujuan"><i class="fas fa-plus fa-sm"></i>{{ __(' Pengesahan') }}</a>
+                                @endif
 
-                                    @elseif (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->status == "Tempahan Di Tolak")
+                                @if (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->status == "Menunggu Persetujuan Tukang Bersih")
+                                    <a class="btn btn-xs btn-default" wire:click="$emit('persetujuan', {{ $perkhidmatan->id }})" href="#" data-toggle="modal" data-target="#modal-persetujuan"><i class="fas fa-plus fa-sm"></i>{{ __(' Pengesahan') }}</a>
 
-                                    @elseif (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->status == "Tempahan Di Terima")
+                                @elseif (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->status == "Tempahan Di Tolak")
 
-                                    @endif
+                                @elseif (isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->status == "Tempahan Di Terima")
+
                                 @endif
                             </x-datatables.body-action>
                         </tr>
@@ -70,6 +74,13 @@
         <x-modal id="modal-buat-tempahan" title="{{ __('Tempahan Perkhidmatan') }}" size="xl" icon="fas fa-hand-sparkles" >
             <x-slot name="body">
                 <livewire:perkhidmatan.tempah />
+            </x-slot>
+            <x-slot name="footer">
+            </x-slot>
+        </x-modal>
+        <x-modal id="modal-kemaskini-perkhidmatan" title="{{ __('Kemaskini Perkhidmatan') }}" size="xl" icon="fas fa-hand-sparkles" >
+            <x-slot name="body">
+                <livewire:perkhidmatan.kemaskini />
             </x-slot>
             <x-slot name="footer">
             </x-slot>

@@ -5,13 +5,13 @@
                 <div class="col-12">
                     <x-forms.text wire:model="tambahPerkhidmatan.tajuk" label="Tajuk" required />
                     <x-forms.text wire:model="tambahPerkhidmatan.penerangan" label="Penerangan" required />
-                    <x-forms.select wire:model="id_lokasi" id="id-lokasi" label="{!! __('Pilih Lokasi') !!}" required>
+                    {{-- <x-forms.select wire:model.defer="id_lokasi" id="id-lokasi" label="{!! __('Pilih Lokasi') !!}" required>
                         <x-slot name="option">
                         @foreach ($senaraiLokasi as $lokasi)
                             <option value="{{ $lokasi['id'] }}">{{ $lokasi['name'] }}</option>
                         @endforeach
                         </x-slot>
-                    </x-forms.select>
+                    </x-forms.select> --}}
                     <x-forms.text wire:model="tambahPerkhidmatan.ketersediaan_lokasi" label="Ketersediaan Lokasi" required />
                 </div>
             </div>
