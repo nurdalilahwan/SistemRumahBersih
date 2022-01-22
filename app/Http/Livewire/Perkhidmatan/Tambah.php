@@ -52,20 +52,4 @@ class Tambah extends Component
         }
     }
 
-    public function setuju(){
-        try{
-            DB::beginTransaction();
-
-            $perkhidmatan['status'] = "Belum Di Tempah";
-
-            DB::commit();
-
-        } catch (\Throwable $th) {
-            DB::rollback();
-            dd($th);
-            $this->reportError($th->getMessage());
-        }
-
-    }
-
 }

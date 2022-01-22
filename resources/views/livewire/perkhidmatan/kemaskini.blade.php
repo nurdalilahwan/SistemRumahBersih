@@ -1,11 +1,11 @@
 <form id="form-kemaskini-perkhidmatan"  wire:submit.prevent="update">
-    <x-card title="Maklumat Tempahan" style="width: 90%; margin: 0 auto; float: none; margin-bottom: 10px;">
+    <x-card title="Kemaskini Maklumat Perkhidmatan" style="width: 90%; margin: 0 auto; float: none; margin-bottom: 10px;">
         <x-slot name="body">
             <div class="row">
                 <div class="col-12">
-                    <x-forms.text wire.model="kemaskiniPerkhidmatan.tajuk" label="Tajuk" required />
-                    <x-forms.text wire.model="kemaskiniPerkhidmatan.penerangan" label="Penerangan" required />
-                    <x-forms.text wire.model="kemaskiniPerkhidmatan.ketersediaan_lokasi" label="Ketersediaan Lokasi" required />
+                    <x-forms.text wire:model="kemaskiniPerkhidmatan.tajuk" placeholder="{{ isset($this->perkhidmatan) ? $this->perkhidmatan['tajuk'] : '' }}" label="Tajuk" />
+                    <x-forms.text wire:model="kemaskiniPerkhidmatan.penerangan" placeholder="{{ isset($this->perkhidmatan) ? $this->perkhidmatan['penerangan'] : '' }}" label="Penerangan" />
+                    <x-forms.text wire:model="kemaskiniPerkhidmatan.ketersediaan_lokasi" placeholder="{{ isset($this->perkhidmatan) ? $this->perkhidmatan['ketersediaan_lokasi'] : '' }}" label="Ketersediaan Lokasi" />
                 </div>
             </div>
         </x-slot>

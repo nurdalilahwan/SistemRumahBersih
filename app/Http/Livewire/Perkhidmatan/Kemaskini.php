@@ -9,6 +9,7 @@ use Livewire\Component;
 class Kemaskini extends Component
 {
     public $kemaskiniPerkhidmatan;
+    public $perkhidmatan;
 
     protected $listeners = [
         'kemaskiniPerkhidmatan'
@@ -21,7 +22,7 @@ class Kemaskini extends Component
 
     public function kemaskiniPerkhidmatan($idPerkhidmatan)
     {
-        $this->kemaskiniPerkhidmatan = Perkhidmatan::find($idPerkhidmatan);
+        $this->perkhidmatan = Perkhidmatan::find($idPerkhidmatan);
     }
 
     public function update()
@@ -43,11 +44,7 @@ class Kemaskini extends Component
         try {
             DB::beginTransaction();
 
-            $this->kemaskiniPerkhidmatan['id_tukang_bersih'] = auth()->user()->id;
-            $this->kemaskiniPerkhidmatan['status'] = "Belum Di Tempah";
-            $idPerkhidmatan = $this->kemaskiniPerkhidmatan->id;
-            // dd($this->kemaskiniPerkhidmatan->toArray());
-            Perkhidmatan::find($idPerkhidmatan)->update($this->kemaskiniPerkhidmatan->toArray());
+            Perkhidmatan::find($this->perkhidmatan->id)->update($this->kemaskiniPerkhidmatan);
 
             $this->emit('triggerSwalSuccess', 'Perkhidmatan Berjaya Di Kemaskini');
             $this->emit('closeModal');
