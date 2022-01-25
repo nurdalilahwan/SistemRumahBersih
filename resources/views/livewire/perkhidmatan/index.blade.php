@@ -59,7 +59,8 @@
                         </tr>
                         @empty
                         <tr>
-                            <x-datatables.empty totalColumn=5/>
+                            <x-datatables.empty totalColumn=6/>
+                            {{-- TIADA REKOD --}}
                         </tr>
                         @endforelse
                     </x-slot>

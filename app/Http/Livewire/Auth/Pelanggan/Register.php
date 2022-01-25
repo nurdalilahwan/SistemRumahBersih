@@ -54,7 +54,7 @@ class Register extends Component
             $this->guard()->login($user);
 
             DB::commit();
-            return redirect()->route('home');
+            return redirect()->route('perkhidmatan');
 
         } catch (\Throwable $th) {
             DB::rollback();

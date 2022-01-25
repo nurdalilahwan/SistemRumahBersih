@@ -27,7 +27,7 @@ class Login extends Component
         $credential = ['name' => $this->name, 'password' => $this->password, 'user_type' => 'Pelanggan'];
 
         if(Auth::attempt($credential)){
-            return redirect()->route('home');
+            return redirect()->route('perkhidmatan');
         }else{
             session()->flash('message-danger', 'These credentials do not match our records.');
         }

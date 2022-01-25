@@ -1,9 +1,8 @@
 <div>
     <x-content title="">
 
-        <x-forms.alert-validation />
+        <x-forms.alert-validation /> <!-- Validation bagi pendaftaran pengguna -->
                 <form id="register-form"  wire:submit.prevent="register">
-
                     <x-card title="Maklumat Pendaftaran" style="width: 90%; margin: 0 auto; float: none; margin-bottom: 10px;">
                         <x-slot name="body">
                                 <div class="row">
@@ -42,7 +41,7 @@
                         </x-slot>
                     </x-card>
                 </form>
-           
+
 
     </x-content>
     <x-loading-indicator wire:target="store"/>
