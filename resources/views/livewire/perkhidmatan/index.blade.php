@@ -31,7 +31,7 @@
                             <td style="text-align: center">{{ $key + 1 }}</td>
                             <td style="text-align: center">{{ $perkhidmatan->tajuk }}</td>
                             <td style="text-align: center">{{ $perkhidmatan->penerangan }}</td>
-                            <td style="text-align: center">{{ $perkhidmatan->lokasi }}</td>
+                            <td style="text-align: center">{{ $perkhidmatan->lokasi }}</12 d>
                             <td style="text-align: center">{{ isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->id_pelanggan == auth()->user()->id ? $perkhidmatan->tempahan->status : $perkhidmatan->status }}</td>
                             <x-datatables.body-action>
                                 @if ($perkhidmatan->status == "Telah Di Tempah")
