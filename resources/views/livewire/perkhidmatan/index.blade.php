@@ -20,8 +20,9 @@
                     <x-slot name="head">
                         <x-datatables.head-index width="5%"/>
                         <x-datatables.head title="{{ __('Perkhidmatan') }}" width="" align="center" />
-                        <x-datatables.head title="{{ __('Ketersediaan Lokasi ') }}" width="" align="center"/>
-                        <x-datatables.head title="{{ __('Status ') }}" width="" align="center"/>
+                        <x-datatables.head title="{{ __('Penerangan') }}" width="" align="center"/>
+                        <x-datatables.head title="{{ __('Lokasi') }}" width="" align="center"/>
+                        <x-datatables.head title="{{ __('Status') }}" width="" align="center"/>
                         <x-datatables.head-action width="20%" />
                     </x-slot>
                     <x-slot name="body">
@@ -29,7 +30,8 @@
                         <tr>
                             <td style="text-align: center">{{ $key + 1 }}</td>
                             <td style="text-align: center">{{ $perkhidmatan->tajuk }}</td>
-                            <td style="text-align: center">{{ $perkhidmatan->ketersediaan_lokasi }}</td>
+                            <td style="text-align: center">{{ $perkhidmatan->penerangan }}</td>
+                            <td style="text-align: center">{{ $perkhidmatan->lokasi }}</td>
                             <td style="text-align: center">{{ isset($perkhidmatan->tempahan->status) && $perkhidmatan->tempahan->id_pelanggan == auth()->user()->id ? $perkhidmatan->tempahan->status : $perkhidmatan->status }}</td>
                             <x-datatables.body-action>
                                 @if ($perkhidmatan->status == "Telah Di Tempah")
